@@ -6,7 +6,7 @@
 #    By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 16:21:34 by manujime          #+#    #+#              #
-#    Updated: 2023/04/24 18:27:47 by manujime         ###   ########.fr        #
+#    Updated: 2023/04/24 23:05:35 by manujime         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ END			=		\033[0m
 
 SRC =   main.c \
 		error_handling.c \
+		time.c \
 		utils.c \
 			
 OBJ = $(SRC:.c=.o)

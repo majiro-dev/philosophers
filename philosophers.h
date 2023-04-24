@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:19:42 by manujime          #+#    #+#             */
-/*   Updated: 2023/04/24 19:38:26 by manujime         ###   ########.fr       */
+/*   Updated: 2023/04/25 00:05:14 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,14 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <pthread.h>
+# include <limits.h>
 
-typedef struct s_philo
-{
-	int			id;
-	long long	last_meal;
-	int			meal_count;
-	t_table		table;
-
-}	t_philo;
+# define RED "\033[0;31m"
+# define GREEN "\033[0;32m"
 
 typedef struct s_table
 {
+	pthread_t	god;
 	long long	time_start;
 	long long	time_to_die;
 	long long	time_to_eat;
@@ -41,13 +37,25 @@ typedef struct s_table
 
 typedef struct s_fork
 {
-	int		available;
+	pthread_mutex_t	lock;
+	int				available;
 }	t_fork;
 
-//utils
-long long	ft_get_time(void);
+typedef struct s_philo
+{
+	int			id;
+	pthread_t	p_thread;
+	long long	last_meal;
+	int			meal_count;
+	t_table		table;
 
-# define RED "\033[0;31m"
-# define GREEN "\033[0;32m"
+}	t_philo;
+
+//utils
+long long	ft_get_basic_time(void);
+long long	ft_get_current_time(t_table table);
+//error_handling
+void		ft_exit_error(int n);
+int			ft_atoi(char *param);
 
 #endif
