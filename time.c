@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:32:42 by manujime          #+#    #+#             */
-/*   Updated: 2023/04/25 00:06:52 by manujime         ###   ########.fr       */
+/*   Updated: 2023/04/25 11:09:29 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ long long	ft_get_basic_time(void)
 
 long long	ft_get_current_time(t_table table)
 {
-	return (table.time_start - ft_get_basic_time());
+	return (ft_get_basic_time() - table.time_start);
 }
