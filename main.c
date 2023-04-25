@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:12:40 by manujime          #+#    #+#             */
-/*   Updated: 2023/04/25 18:01:59 by manujime         ###   ########.fr       */
+/*   Updated: 2023/04/25 18:44:14 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_leaks(void)
 	system("leaks -q philo");
 }
 
-t_philo	ft_sit_philosophers(t_table *table)
+t_philo	**ft_sit_philosophers(t_table *table)
 {
 	int		c;
 	t_philo	**academy;
@@ -29,7 +29,9 @@ t_philo	ft_sit_philosophers(t_table *table)
 	while (c < table->philo_count)
 	{
 		academy[c] = NULL;
+		c++;
 	}
+	return (academy);
 }
 
 void	ft_set_table(int argc, char **argv, t_table *table)
@@ -48,7 +50,7 @@ int	main(int argc, char **argv)
 {
 	atexit(ft_leaks);
 	t_table	table;
-	t_philo	academy;
+	t_philo	**academy;
 
 	if (argc < 4 || argc > 6)
 		ft_exit_error(0);
@@ -56,10 +58,9 @@ int	main(int argc, char **argv)
 	academy = ft_sit_philosophers(&table);
 	while (ft_get_current_time(table) < 10000)
 	{
-		usleep(1000);
-		if (ft_get_current_time(table) > 9999)
-			printf("the simulation has ended\n");
-		//printf("%lld ", ft_get_current_time(table));
+		usleep(100);
+		printf("%lld\n", ft_get_current_time(table));
 	}
+	printf("the simulation has ended\n");
 	return (0);
 }
