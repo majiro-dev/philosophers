@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 12:58:04 by manujime          #+#    #+#             */
-/*   Updated: 2023/04/25 00:26:08 by manujime         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:55:54 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_exit_error(int n)
 		printf("Error, non numeric arguments\n");
 	if (n == 2)
 		printf("Error, too big of an argument\n");
+	if (n == 3)
+		printf("Error, bad academy formation\n");
 	exit(1);
 }
 
