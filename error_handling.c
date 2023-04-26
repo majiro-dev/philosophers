@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 12:58:04 by manujime          #+#    #+#             */
-/*   Updated: 2023/04/25 17:55:54 by manujime         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:28:47 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	ft_exit_error(int n)
 		printf("Error, too big of an argument\n");
 	if (n == 3)
 		printf("Error, bad academy formation\n");
+	if (n == 4)
+		printf("Error, bad fork placement\n");
 	exit(1);
 }
 

@@ -6,7 +6,7 @@
 #    By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 16:21:34 by manujime          #+#    #+#              #
-#    Updated: 2023/04/24 23:05:35 by manujime         ###   ########.fr        #
+#    Updated: 2023/04/26 11:03:07 by manujime         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC =   main.c \
 		error_handling.c \
 		time.c \
 		utils.c \
+		clean_up.c \
 			
 OBJ = $(SRC:.c=.o)
 

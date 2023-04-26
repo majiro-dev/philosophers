@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:19:42 by manujime          #+#    #+#             */
-/*   Updated: 2023/04/25 18:21:08 by manujime         ###   ########.fr       */
+/*   Updated: 2023/04/26 20:02:31 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_table
 	long long		time_to_sleep;
 	int				must_eat;
 	int				philo_count;
-	t_fork			*forks;
+	pthread_mutex_t	*forks;
 }	t_table;
 
 typedef struct s_philo
@@ -50,6 +50,8 @@ typedef struct s_philo
 	pthread_t	p_thread;
 	long long	last_meal;
 	int			meal_count;
+	int			fork_1;
+	int			fork_2;
 	t_table		table;
 
 }	t_philo;
@@ -60,5 +62,7 @@ long long	ft_get_current_time(t_table table);
 //error_handling
 void		ft_exit_error(int n);
 int			ft_atoi(char *param);
+//clean_up
+void		ft_free_academy(t_philo **academy);
 
 #endif
