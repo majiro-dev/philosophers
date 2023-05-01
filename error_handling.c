@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 12:58:04 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/01 13:25:38 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/01 19:13:00 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_atoi(char *param)
 		nbr = (nbr * 10) + (param[c] - '0');
 		c++;
 	}
-	if (nbr > INT_MAX)
+	if (nbr > INT_MAX || nbr < INT_MIN)
 		ft_exit_error(2);
 	return (nbr);
 }

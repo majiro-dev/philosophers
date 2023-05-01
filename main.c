@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:12:40 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/01 15:18:44 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/01 23:56:38 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,20 @@
 void	ft_leaks(void)
 {
 	system("leaks -q philo");
+}
+
+void	ft_designate_forks(t_philo *philo)
+{
+	if (philo->id % 2 == 0)
+	{
+		philo->fork_1 = philo->id;
+		philo->fork_2 = (philo->id + 1) % philo->table->philo_count;
+	}
+	else
+	{
+		philo->fork_2 = philo->id;
+		philo->fork_1 = (philo->id + 1) % philo->table->philo_count;
+	}
 }
 
 void	ft_set_forks(t_table *table)
@@ -51,8 +65,8 @@ t_philo	**ft_sit_philosophers(t_table *table)
 			ft_exit_error(3);
 		academy[c]->id = c;
 		academy[c]->meal_count = 0;
-		academy[c]->table = *table;
-		//ft_designate_forks(academy[c]);
+		academy[c]->table = table;
+		ft_designate_forks(academy[c]);
 		c++;
 	}
 	academy[table->philo_count] = NULL;
@@ -69,6 +83,8 @@ void	ft_set_table(int argc, char **argv, t_table *table)
 	table->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		table->must_eat = ft_atoi(argv[5]);
+	else
+		table->must_eat = -1;
 	ft_set_forks(table);
 }
 
@@ -84,7 +100,7 @@ int	main(int argc, char **argv)
 	ft_set_forks(&table);
 	academy = ft_sit_philosophers(&table);
 	ft_beginning_of_existence(academy, &table);
-	while (ft_get_current_time(table) < 10000)
+	while (ft_get_current_time(&table) < 10000)
 	{
 		usleep(500);
 	}
