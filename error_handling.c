@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 12:58:04 by manujime          #+#    #+#             */
-/*   Updated: 2023/04/26 15:28:47 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/01 13:25:38 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	ft_exit_error(int n)
 		printf("Error, bad academy formation\n");
 	if (n == 4)
 		printf("Error, bad fork placement\n");
+	if (n == 5)
+		printf("Error, bad philo thread\n");
 	exit(1);
 }
 

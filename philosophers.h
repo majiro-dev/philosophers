@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:19:42 by manujime          #+#    #+#             */
-/*   Updated: 2023/04/26 20:02:31 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:16:52 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,9 @@ void		ft_exit_error(int n);
 int			ft_atoi(char *param);
 //clean_up
 void		ft_free_academy(t_philo **academy);
+//existence
+void		ft_beginning_of_existence(t_philo **philo, t_table *table);
+//philo_routine
+void		*ft_philo_start(void *arg);
 
 #endif

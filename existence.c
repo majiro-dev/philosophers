@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 15:45:56 by manujime          #+#    #+#             */
-/*   Updated: 2023/04/25 16:38:52 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:22:19 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,18 @@ int	ft_are_we_even_alive(t_table *table)
 	else
 		return (0);
 	pthread_mutex_unlock(&table->cynical_lock);
+}
+
+void	ft_beginning_of_existence(t_philo **philo, t_table *table)
+{
+	int	c;
+
+	c = 0;
+	while (c < table->philo_count)
+	{
+		if (pthread_create(&philo[c]->p_thread, NULL, &ft_philo_start,
+				philo[c]) != 0)
+			ft_exit_error(5);
+		c++;
+	}
 }
