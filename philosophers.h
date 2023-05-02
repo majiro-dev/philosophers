@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:19:42 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/01 23:55:19 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/02 16:55:04 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_philo
 
 }	t_philo;
 
-//utils
+//time
 long long	ft_get_basic_time(void);
 long long	ft_get_current_time(t_table *table);
 //error_handling
@@ -69,5 +69,6 @@ int			ft_are_we_even_alive(t_table *table);
 void		ft_beginning_of_existence(t_philo **philo, t_table *table);
 //philo_routine
 void		*ft_philo_start(void *arg);
-
+//utils
+void		ft_print_status(t_philo *philo, int s);
 #endif

@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:12:40 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/01 23:56:38 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/02 16:44:23 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,3 +108,4 @@ int	main(int argc, char **argv)
 	printf("the simulation has ended\n");
 	return (0);
 }
+  
