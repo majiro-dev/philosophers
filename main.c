@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:12:40 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/02 16:44:23 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/03 10:15:13 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ t_philo	**ft_sit_philosophers(t_table *table)
 			ft_exit_error(3);
 		academy[c]->id = c;
 		academy[c]->meal_count = 0;
+		academy[c]->last_meal = 0;
 		academy[c]->table = table;
 		ft_designate_forks(academy[c]);
 		c++;
