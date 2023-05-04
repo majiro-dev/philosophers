@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:10:18 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/05 00:33:17 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/05 00:35:45 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_bed_time(t_philo *philo)
 	alarm = ft_get_current_time(philo->table) + philo->table->time_to_sleep;
 	while (ft_get_current_time(philo->table) < alarm)
 	{
-		if (!ft_are_we_even_alive(&philo->table))
+		if (!ft_are_we_even_alive(philo->table))
 			break ;
 		usleep(100);
 	}
@@ -40,7 +40,7 @@ void	ft_think(t_philo *philo)
 	ft_print_status(philo, 4);
 	while (ft_get_current_time(philo->table) < the_munchies)
 	{
-		if (!ft_are_we_even_alive(&philo->table))
+		if (!ft_are_we_even_alive(philo->table))
 			break ;
 		usleep(100);
 	}
@@ -61,7 +61,7 @@ void	ft_eat_spaguetti(t_philo *philo)
 	stop_munch = ft_get_current_time(philo->table) + philo->table->time_to_eat;
 	while (ft_get_current_time(philo->table) < stop_munch)
 	{
-		if (!ft_are_we_even_alive(&philo->table))
+		if (!ft_are_we_even_alive(philo->table))
 			break ;
 		usleep(100);
 	}

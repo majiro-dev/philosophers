@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 23:07:52 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/02 16:55:46 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/05 00:40:09 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	ft_print_status(t_philo *philo, int s)
 			"has taken a fork");
 	if (s == 2)
 		printf("%lld %d %s\n", ft_get_current_time(philo->table), philo->id,
-			"is eating\n");
+			"is eating");
 	if (s == 3)
 		printf("%lld %d %s\n", ft_get_current_time(philo->table), philo->id,
-			"is sleeping\n");
+			"is sleeping");
 	if (s == 4)
 		printf("%lld %d %s\n", ft_get_current_time(philo->table), philo->id,
-			"is thinking\n");
+			"is thinking");
 }
