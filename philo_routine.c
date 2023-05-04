@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:10:18 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/04 15:48:29 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/05 00:33:17 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,29 @@ void	ft_bed_time(t_philo *philo)
 {
 	long long int	alarm;
 
+	ft_print_status(philo, 3);
 	alarm = ft_get_current_time(philo->table) + philo->table->time_to_sleep;
 	while (ft_get_current_time(philo->table) < alarm)
+	{
+		if (!ft_are_we_even_alive(&philo->table))
+			break ;
+		usleep(100);
+	}
+}
+
+void	ft_think(t_philo *philo)
+{
+	long long int	the_munchies;
+
+	the_munchies = philo->table->time_to_die
+		- (ft_get_current_time(philo->table) - philo->last_meal)
+		- philo->table->time_to_eat / 2;
+	if (the_munchies < 0)
+		the_munchies = 0;
+	if (the_munchies > 500)
+		the_munchies = 200;
+	ft_print_status(philo, 4);
+	while (ft_get_current_time(philo->table) < the_munchies)
 	{
 		if (!ft_are_we_even_alive(&philo->table))
 			break ;
@@ -59,14 +80,7 @@ void	*ft_philo_start(void *arg)
 	{
 		ft_eat_spaguetti(philo);
 		ft_bed_time(philo);
-		//think
-	}
-	while (ft_get_current_time(philo->table) < 10000)
-	{
-		usleep(2000000);
-		printf("%lld %d my forks are %d and %d\n",
-			ft_get_current_time(philo->table), philo->id,
-			philo->fork_1, philo->fork_2);
+		ft_think(philo);
 	}
 	return (NULL);
 }
