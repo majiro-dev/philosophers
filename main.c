@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:12:40 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/05 00:40:13 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/05 14:05:49 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,9 @@ int	main(int argc, char **argv)
 	ft_set_forks(&table);
 	academy = ft_sit_philosophers(&table);
 	ft_beginning_of_existence(academy, &table);
-	while (ft_get_current_time(&table) < 10000)
+	while (ft_are_we_even_alive(&table))
 	{
-		usleep(500);
+		
 	}
 	ft_free_academy(academy);
 	printf("the simulation has ended\n");
