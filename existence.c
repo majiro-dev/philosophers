@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 15:45:56 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/05 14:46:21 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/05 18:54:43 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	ft_beginning_of_existence(t_philo **philo, t_table *table)
 
 int	ft_ur_no_more(t_philo *philo)
 {
-	if ((ft_get_current_time - philo->last_meal) >= philo->table->time_to_die)
+	if ((ft_get_current_time(philo->table) - philo->last_meal)
+		>= philo->table->time_to_die)
 	{
 		pthread_mutex_lock(&philo->table->cynical_lock);
 		philo->table->existence = 0;
@@ -61,7 +62,7 @@ int	ft_philo_check(t_philo **academy)
 	{
 		if (ft_ur_no_more(academy[c]))
 			return (1);
-		if ()//check how many meals
 		c++;
 	}
+	return (0);
 }
