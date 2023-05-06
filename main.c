@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:12:40 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/05 19:20:05 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/06 15:11:55 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ t_philo	**ft_sit_philosophers(t_table *table)
 		academy[c]->meal_count = 0;
 		academy[c]->last_meal = 0;
 		academy[c]->table = table;
+		if (pthread_mutex_init(&academy[c]->m_count_lock, NULL))
+			ft_exit_error(3);
 		ft_designate_forks(academy[c]);
 		c++;
 	}
@@ -104,7 +106,10 @@ int	main(int argc, char **argv)
 	while (ft_are_we_even_alive(&table))
 	{
 		if (ft_philo_check(academy))
-		break;
+		{
+			usleep(500);
+			break;
+		}
 	}
 	ft_free_academy(academy);
 	printf("the simulation has ended\n");

@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:19:42 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/05 16:09:35 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/06 15:11:19 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,15 @@ typedef struct s_table
 
 typedef struct s_philo
 {
-	int			id;
-	pthread_t	p_thread;
-	long long	last_meal;
-	int			meal_count;
-	int			fork_1;
-	int			fork_2;
-	t_table		*table;
+	int				id;
+	pthread_t		p_thread;
+	pthread_mutex_t	l_meal_lock;
+	long long		last_meal;
+	pthread_mutex_t	m_count_lock;
+	int				meal_count;
+	int				fork_1;
+	int				fork_2;
+	t_table			*table;
 
 }	t_philo;
 
