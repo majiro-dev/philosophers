@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 15:45:56 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/07 16:23:24 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/07 20:13:00 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_beginning_of_existence(t_philo **philo, t_table *table)
 	int	c;
 
 	c = 0;
+	table->time_start = (table->philo_count * 20) + ft_get_basic_time();
 	while (c < table->philo_count)
 	{
 		if (pthread_create(&philo[c]->p_thread, NULL, &ft_philo_start,
@@ -41,15 +42,18 @@ void	ft_beginning_of_existence(t_philo **philo, t_table *table)
 
 int	ft_ur_no_more(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->l_meal_lock);
 	if ((ft_get_current_time(philo->table) - philo->last_meal)
 		>= philo->table->time_to_die)
 	{
+		pthread_mutex_unlock(&philo->l_meal_lock);
 		pthread_mutex_lock(&philo->table->cynical_lock);
 		philo->table->existence = 0;
 		ft_print_status(philo, 5);
 		pthread_mutex_unlock(&philo->table->cynical_lock);
 		return (1);
 	}
+	pthread_mutex_unlock(&philo->l_meal_lock);
 	return (0);
 }
 

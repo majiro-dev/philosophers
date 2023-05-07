@@ -6,17 +6,17 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:12:40 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/07 16:11:54 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/07 20:11:57 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-//remember to also check te leaks with memwatch
+/*
 void	ft_leaks(void)
 {
 	system("leaks -q philo");
 }
-
+*/
 void	ft_designate_forks(t_philo *philo)
 {
 	if (philo->id % 2 == 0)
@@ -90,12 +90,10 @@ void	ft_set_table(int argc, char **argv, t_table *table)
 	else
 		table->must_eat = -1;
 	ft_set_forks(table);
-	table->time_start = ft_get_basic_time();
 }
 
 int	main(int argc, char **argv)
 {
-	atexit(ft_leaks);
 	t_table	table;
 	t_philo	**academy;
 
@@ -105,14 +103,14 @@ int	main(int argc, char **argv)
 	ft_set_forks(&table);
 	academy = ft_sit_philosophers(&table);
 	ft_beginning_of_existence(academy, &table);
-	while (ft_are_we_even_alive(&table))
+	while (1)
 	{
 		if (ft_philo_check(academy))
 		{
 			usleep(250);
 			break;
 		}
-			usleep(250);
+			usleep(1000);
 	}
 	ft_free_academy(academy);
 	printf("the simulation has ended\n");
