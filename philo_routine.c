@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:10:18 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/06 15:07:16 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/07 16:16:01 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ void	ft_eat_spaguetti(t_philo *philo)
 	ft_print_status(philo, 1);
 	ft_print_status(philo, 2);
 	philo->last_meal = ft_get_current_time(philo->table);//needs a mutex
-	philo->meal_count += 1;//needs a mutex
+	pthread_mutex_lock(&philo->l_meal_lock);
+	philo->meal_count += 1;
+	pthread_mutex_unlock(&philo->l_meal_lock);
 	stop_munch = ft_get_current_time(philo->table) + philo->table->time_to_eat;
 	while (ft_get_current_time(philo->table) < stop_munch)
 	{

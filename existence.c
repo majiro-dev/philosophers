@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 15:45:56 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/06 15:12:41 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/07 16:23:24 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,11 @@ int	ft_philo_check(t_philo **academy)
 	{
 		if (ft_ur_no_more(academy[c]))
 			return (1);
-		if (academy[c]->meal_count < academy[c]->table->must_eat)
+		pthread_mutex_lock(&academy[c]->l_meal_lock);
+		if (academy[c]->table->must_eat == -1
+			|| academy[c]->meal_count < academy[c]->table->must_eat)
 			satiated = 0;
+		pthread_mutex_unlock(&academy[c]->l_meal_lock);
 		c++;
 	}
 	return (satiated);

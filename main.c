@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:12:40 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/06 15:11:55 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/07 16:11:54 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ t_philo	**ft_sit_philosophers(t_table *table)
 void	ft_set_table(int argc, char **argv, t_table *table)
 {
 	table->existence = 1;
-	table->time_start = ft_get_basic_time();
 	table->philo_count = ft_atoi(argv[1]);
+	if (table->philo_count == 0 || table->philo_count > 200)
+		ft_exit_error(0);
 	table->time_to_die = ft_atoi(argv[2]);
 	table->time_to_eat = ft_atoi(argv[3]);
 	table->time_to_sleep = ft_atoi(argv[4]);
@@ -89,6 +90,7 @@ void	ft_set_table(int argc, char **argv, t_table *table)
 	else
 		table->must_eat = -1;
 	ft_set_forks(table);
+	table->time_start = ft_get_basic_time();
 }
 
 int	main(int argc, char **argv)
@@ -97,7 +99,7 @@ int	main(int argc, char **argv)
 	t_table	table;
 	t_philo	**academy;
 
-	if (argc < 4 || argc > 6)
+	if (argc < 5 || argc > 6)
 		ft_exit_error(0);
 	ft_set_table(argc, argv, &table);
 	ft_set_forks(&table);
@@ -107,9 +109,10 @@ int	main(int argc, char **argv)
 	{
 		if (ft_philo_check(academy))
 		{
-			usleep(500);
+			usleep(250);
 			break;
 		}
+			usleep(250);
 	}
 	ft_free_academy(academy);
 	printf("the simulation has ended\n");

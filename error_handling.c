@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 12:58:04 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/01 19:13:00 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/07 00:49:05 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	ft_exit_error(int n)
 {
 	if (n == 0)
-		printf("Error, wrong number of arguments\n");
+		printf("Error, non valid argument\n");
 	if (n == 1)
-		printf("Error, non numeric arguments\n");
+		printf("Error, PLACEHOLDER\n");
 	if (n == 2)
 		printf("Error, too big of an argument\n");
 	if (n == 3)
@@ -39,7 +39,7 @@ int	ft_atoi(char *param)
 	while (param[c] && param[c] >= '0' && param[c] <= '9')
 		c++;
 	if (param[c] != '\0')
-		ft_exit_error(1);
+		ft_exit_error(0);
 	c = 0;
 	while (param[c] && param[c] >= '0' && param[c] <= '9')
 	{

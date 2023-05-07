@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 23:07:52 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/05 12:24:34 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/07 00:57:43 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ void	ft_print_status(t_philo *philo, int s)
 		printf("%lld %d %s\n", ft_get_current_time(philo->table), philo->id,
 			"is thinking");
 	if (s == 5)
-		printf("%lld %d %s\n", ft_get_current_time(philo->table), philo->id,
-			"has died");
+		printf("%s%lld %d %s%s\n", RED, ft_get_current_time(philo->table),
+			philo->id, "has died", END);
 }

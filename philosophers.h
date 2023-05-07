@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:19:42 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/06 15:11:19 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/07 00:55:19 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 # define RED "\033[0;31m"
 # define GREEN "\033[0;32m"
+# define BLUE "\033[0;36m"
+# define END "\033[0m"
 
 typedef struct s_fork
 {
