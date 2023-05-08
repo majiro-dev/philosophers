@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:19:42 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/07 00:55:19 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/08 10:50:38 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_fork
 
 typedef struct s_table
 {
+	pthread_mutex_t	talking_stick;
 	pthread_t		sim;
 	pthread_mutex_t	cynical_lock;
 	int				existence;

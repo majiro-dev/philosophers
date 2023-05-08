@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:12:40 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/07 20:11:57 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/08 10:57:54 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_philo	**ft_sit_philosophers(t_table *table)
 		academy[c] = malloc(sizeof(t_philo));
 		if (!academy[c])
 			ft_exit_error(3);
-		academy[c]->id = c;
+		academy[c]->id = c + 1;
 		academy[c]->meal_count = 0;
 		academy[c]->last_meal = 0;
 		academy[c]->table = table;
@@ -89,6 +89,8 @@ void	ft_set_table(int argc, char **argv, t_table *table)
 		table->must_eat = ft_atoi(argv[5]);
 	else
 		table->must_eat = -1;
+	if (pthread_mutex_init(&table->talking_stick, NULL))
+			ft_exit_error(3);
 	ft_set_forks(table);
 }
 
@@ -113,7 +115,7 @@ int	main(int argc, char **argv)
 			usleep(1000);
 	}
 	ft_free_academy(academy);
-	printf("the simulation has ended\n");
+	printf("the simulation has ended, philo 1 has eaten %d\n", academy[0]->meal_count);
 	return (0);
 }
   

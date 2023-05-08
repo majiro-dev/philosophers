@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:10:18 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/07 22:08:00 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/08 11:03:35 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	ft_think(t_philo *philo, int status)
 		the_munchies = 0;
 	if (the_munchies > 600)
 		the_munchies = 200;
-	ft_print_status(philo, status);
+	if (the_munchies != 0)
+		ft_print_status(philo, status);
 	while (ft_get_current_time(philo->table) < the_munchies)
 	{
 		if (!ft_are_we_even_alive(philo->table))
