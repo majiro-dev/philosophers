@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:10:18 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/08 11:03:35 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:29:50 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,14 @@ void	ft_think(t_philo *philo, int status)
 	}
 }
 
-void	ft_eat_spaguetti(t_philo *philo)
+void	ft_eat_no_more(int *filled, t_philo *philo)
+{
+	if (philo->table->must_eat != -1
+		&& philo->meal_count >= philo->table->must_eat)
+		*filled = 1;
+}
+
+void	ft_eat_spaguetti(t_philo *philo, int *filled)
 {
 	long long int	stop_munch;
 
@@ -72,6 +79,7 @@ void	ft_eat_spaguetti(t_philo *philo)
 	}
 	pthread_mutex_lock(&philo->l_meal_lock);
 	philo->meal_count += 1;
+	ft_eat_no_more(filled, philo);
 	pthread_mutex_unlock(&philo->l_meal_lock);
 	pthread_mutex_unlock(&philo->table->forks[philo->fork_1]);
 	pthread_mutex_unlock(&philo->table->forks[philo->fork_2]);
@@ -80,7 +88,9 @@ void	ft_eat_spaguetti(t_philo *philo)
 void	*ft_philo_start(void *arg)
 {
 	t_philo	*philo;
+	int		filled;
 
+	filled = 0;
 	philo = (t_philo *)arg;
 	if (philo->table->time_to_die == 0)
 		return (NULL);
@@ -92,12 +102,14 @@ void	*ft_philo_start(void *arg)
 	philo->last_meal = ft_get_current_time(philo->table);
 	pthread_mutex_unlock(&philo->l_meal_lock);
 	if (philo->id % 2)
-		ft_think(philo, -1);
+		usleep(50);
 	while (ft_are_we_even_alive(philo->table))
 	{
-		ft_eat_spaguetti(philo);
+		ft_eat_spaguetti(philo, &filled);
 		ft_bed_time(philo);
 		ft_think(philo, 4);
+		if (filled == 1)
+			usleep(100);
 	}
 	return (NULL);
 }

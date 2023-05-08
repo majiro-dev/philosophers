@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:12:40 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/08 10:57:54 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:33:02 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int	main(int argc, char **argv)
 {
 	t_table	table;
 	t_philo	**academy;
+	int	meals;
 
 	if (argc < 5 || argc > 6)
 		ft_exit_error(0);
@@ -109,13 +110,14 @@ int	main(int argc, char **argv)
 	{
 		if (ft_philo_check(academy))
 		{
-			usleep(250);
+			usleep(1000);
 			break;
 		}
 			usleep(1000);
 	}
+	meals = academy[0]->meal_count;
 	ft_free_academy(academy);
-	printf("the simulation has ended, philo 1 has eaten %d\n", academy[0]->meal_count);
+	printf("the simulation has ended, philo 1 has eaten %d\n", meals);
 	return (0);
 }
   
