@@ -6,7 +6,7 @@
 #    By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 16:21:34 by manujime          #+#    #+#              #
-#    Updated: 2023/05/01 14:31:16 by manujime         ###   ########.fr        #
+#    Updated: 2023/05/08 16:04:06 by manujime         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC =   main.c \
 		clean_up.c \
 		philo_routine.c \
 		existence.c \
+		single_philo.c \
 			
 OBJ = $(SRC:.c=.o)
 

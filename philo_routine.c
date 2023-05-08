@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:10:18 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/08 15:29:50 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/08 21:31:36 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_bed_time(t_philo *philo)
 	{
 		if (!ft_are_we_even_alive(philo->table))
 			break ;
-		usleep(100);
+		usleep(50);
 	}
 }
 
@@ -45,7 +45,7 @@ void	ft_think(t_philo *philo, int status)
 	{
 		if (!ft_are_we_even_alive(philo->table))
 			break ;
-		usleep(100);
+		usleep(50);
 	}
 }
 
@@ -75,7 +75,7 @@ void	ft_eat_spaguetti(t_philo *philo, int *filled)
 	{
 		if (!ft_are_we_even_alive(philo->table))
 			break ;
-		usleep(100);
+		usleep(50);
 	}
 	pthread_mutex_lock(&philo->l_meal_lock);
 	philo->meal_count += 1;

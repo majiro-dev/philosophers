@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 15:45:56 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/07 20:13:00 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/08 21:36:50 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,20 @@ void	ft_beginning_of_existence(t_philo **philo, t_table *table)
 	int	c;
 
 	c = 0;
-	table->time_start = (table->philo_count * 20) + ft_get_basic_time();
+	table->time_start = (table->philo_count * 2 * 10) + ft_get_basic_time();
+	if (table->philo_count == 1)
+	{
+		table->time_start = ft_get_basic_time();
+		if (pthread_create(&philo[c]->p_thread, NULL, &ft_single_philo,
+				philo[c]) != 0)
+			ft_exit_error(5, &table->existence);
+		return ;
+	}
 	while (c < table->philo_count)
 	{
 		if (pthread_create(&philo[c]->p_thread, NULL, &ft_philo_start,
 				philo[c]) != 0)
-			ft_exit_error(5);
+			ft_exit_error(5, &table->existence);
 		c++;
 	}
 }
@@ -75,5 +83,24 @@ int	ft_philo_check(t_philo **academy)
 		pthread_mutex_unlock(&academy[c]->l_meal_lock);
 		c++;
 	}
+	if (satiated == 1)
+	{
+		pthread_mutex_lock(&academy[c]->table->cynical_lock);
+		academy[c]->table->existence = 0;
+		pthread_mutex_unlock(&academy[c]->table->cynical_lock);
+	}
 	return (satiated);
+}
+
+void	ft_keep_this_going(t_philo **academy)
+{
+	while (1)
+	{
+		if (ft_philo_check(academy))
+		{
+			usleep(1500);
+			break ;
+		}
+		usleep(1000);
+	}
 }

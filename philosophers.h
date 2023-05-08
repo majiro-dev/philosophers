@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:19:42 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/08 10:50:38 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/08 21:07:04 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,22 @@ typedef struct s_philo
 long long	ft_get_basic_time(void);
 long long	ft_get_current_time(t_table *table);
 //error_handling
-void		ft_exit_error(int n);
-int			ft_atoi(char *param);
+void		ft_exit_error(int n, int *test);
+int			ft_atoi(char *param, t_table *table);
 //clean_up
 void		ft_free_academy(t_philo **academy);
+void		ft_clean_table(t_table *table);
+void		ft_clean_up(t_philo **academy, t_table *table);
 //existence
 int			ft_are_we_even_alive(t_table *table);
 void		ft_beginning_of_existence(t_philo **philo, t_table *table);
 int			ft_ur_no_more(t_philo *philo);
 int			ft_philo_check(t_philo **academy);
+void		ft_keep_this_going(t_philo **academy);
 //philo_routine
 void		*ft_philo_start(void *arg);
+//single_philo
+void		*ft_single_philo(void *arg);
 //utils
 void		ft_print_status(t_philo *philo, int s);
 #endif

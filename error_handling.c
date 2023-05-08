@@ -6,13 +6,13 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 12:58:04 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/07 00:49:05 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/08 21:00:24 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	ft_exit_error(int n)
+void	ft_exit_error(int n, int *test)
 {
 	if (n == 0)
 		printf("Error, non valid argument\n");
@@ -26,10 +26,10 @@ void	ft_exit_error(int n)
 		printf("Error, bad fork placement\n");
 	if (n == 5)
 		printf("Error, bad philo thread\n");
-	exit(1);
+	*test = 0;
 }
 
-int	ft_atoi(char *param)
+int	ft_atoi(char *param,t_table *table)
 {
 	int				c;
 	long long int	nbr;
@@ -39,7 +39,7 @@ int	ft_atoi(char *param)
 	while (param[c] && param[c] >= '0' && param[c] <= '9')
 		c++;
 	if (param[c] != '\0')
-		ft_exit_error(0);
+		ft_exit_error(0, &table->existence);
 	c = 0;
 	while (param[c] && param[c] >= '0' && param[c] <= '9')
 	{
@@ -47,6 +47,6 @@ int	ft_atoi(char *param)
 		c++;
 	}
 	if (nbr > INT_MAX || nbr < INT_MIN)
-		ft_exit_error(2);
+		ft_exit_error(2, &table->existence);
 	return (nbr);
 }
