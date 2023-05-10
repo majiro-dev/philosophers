@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:12:40 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/10 19:10:14 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/10 21:34:32 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void	ft_designate_forks(t_philo *philo)
 	}
 }
 
-void	ft_set_forks(t_table *table)
+void	ft_set_forks(t_table *table) //leaks here
 {
 	int				c;
 	pthread_mutex_t	*forks;
 
 	c = 0;
-	forks = malloc(sizeof(pthread_mutex_t) * table->philo_count + 1);
+	forks = malloc(sizeof(pthread_mutex_t) * (table->philo_count + 1));
 	if (!forks)
 		ft_exit_error(4, &table->existence);
 	while (c < table->philo_count)
@@ -55,7 +55,7 @@ t_philo	**ft_sit_philosophers(t_table *table)
 	t_philo	**academy;
 
 	c = 0;
-	academy = malloc(sizeof(t_philo) * table->philo_count + 1);
+	academy = malloc(sizeof(t_philo *) * (table->philo_count + 1));
 	if (!academy)
 		ft_exit_error(3, &table->existence);
 	while (c < table->philo_count)
@@ -74,7 +74,7 @@ t_philo	**ft_sit_philosophers(t_table *table)
 		ft_designate_forks(academy[c]);
 		c++;
 	}
-	//academy[table->philo_count] = NULL;
+	academy[c] = NULL;
 	return (academy);
 }
 
@@ -91,7 +91,7 @@ void	ft_set_table(int argc, char **argv, t_table *table)
 	else
 		table->must_eat = -1;
 	if (pthread_mutex_init(&table->talking_stick, NULL))
-			ft_exit_error(3, &table->existence);
+		ft_exit_error(3, &table->existence);
 	ft_set_forks(table);
 }
 
@@ -105,7 +105,7 @@ int	main(int argc, char **argv)
 	if (argc < 5 || argc > 6)
 		ft_exit_error(0, &table.existence);
 	ft_set_table(argc, argv, &table);
-	ft_set_forks(&table);
+	//ft_set_forks(&table);
 	academy = ft_sit_philosophers(&table);
 	if (ft_are_we_even_alive(&table))
 	{
@@ -116,4 +116,3 @@ int	main(int argc, char **argv)
 	ft_clean_up(academy, &table);
 	return (0);
 }
-  
