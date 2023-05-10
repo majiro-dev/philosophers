@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:12:40 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/08 21:09:42 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/10 19:10:14 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_set_forks(t_table *table)
 	pthread_mutex_t	*forks;
 
 	c = 0;
-	forks = malloc(sizeof(t_fork) * table->philo_count + 1);
+	forks = malloc(sizeof(pthread_mutex_t) * table->philo_count + 1);
 	if (!forks)
 		ft_exit_error(4, &table->existence);
 	while (c < table->philo_count)
@@ -69,10 +69,12 @@ t_philo	**ft_sit_philosophers(t_table *table)
 		academy[c]->table = table;
 		if (pthread_mutex_init(&academy[c]->m_count_lock, NULL))
 			ft_exit_error(3, &table->existence);
+		if (pthread_mutex_init(&academy[c]->l_meal_lock, NULL))
+			ft_exit_error(3, &table->existence);
 		ft_designate_forks(academy[c]);
 		c++;
 	}
-	academy[table->philo_count] = NULL;
+	//academy[table->philo_count] = NULL;
 	return (academy);
 }
 
@@ -105,12 +107,12 @@ int	main(int argc, char **argv)
 	ft_set_table(argc, argv, &table);
 	ft_set_forks(&table);
 	academy = ft_sit_philosophers(&table);
-	if (table.existence == 1)
+	if (ft_are_we_even_alive(&table))
 	{
 		ft_beginning_of_existence(academy, &table);
 		ft_keep_this_going(academy);
 	}
-	usleep(10000);
+	usleep(1000);
 	ft_clean_up(academy, &table);
 	return (0);
 }

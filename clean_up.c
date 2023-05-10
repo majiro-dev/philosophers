@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:52:14 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/08 21:36:13 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/10 19:34:49 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,10 @@ void	ft_join_philos(t_philo **philo, t_table *table)
 
 void	ft_clean_up(t_philo **academy, t_table *table)
 {
-	//printf("the simulation has ended, philo 1 has eaten %d times\n",
-	//	academy[0]->meal_count);
-	usleep(10000);
+	pthread_mutex_lock(&academy[0]->m_count_lock);
+	printf("the simulation has ended\n");
+	pthread_mutex_unlock(&academy[0]->m_count_lock);
+	usleep(100000);
 	ft_join_philos(academy, table);
 	ft_free_academy(academy);
 	ft_clean_table(table);

@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:10:18 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/08 21:31:36 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/10 19:45:02 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,7 @@ void	ft_think(t_philo *philo, int status)
 	}
 }
 
-void	ft_eat_no_more(int *filled, t_philo *philo)
-{
-	if (philo->table->must_eat != -1
-		&& philo->meal_count >= philo->table->must_eat)
-		*filled = 1;
-}
-
-void	ft_eat_spaguetti(t_philo *philo, int *filled)
+void	ft_eat_spaguetti(t_philo *philo)
 {
 	long long int	stop_munch;
 
@@ -79,7 +72,6 @@ void	ft_eat_spaguetti(t_philo *philo, int *filled)
 	}
 	pthread_mutex_lock(&philo->l_meal_lock);
 	philo->meal_count += 1;
-	ft_eat_no_more(filled, philo);
 	pthread_mutex_unlock(&philo->l_meal_lock);
 	pthread_mutex_unlock(&philo->table->forks[philo->fork_1]);
 	pthread_mutex_unlock(&philo->table->forks[philo->fork_2]);
@@ -88,16 +80,13 @@ void	ft_eat_spaguetti(t_philo *philo, int *filled)
 void	*ft_philo_start(void *arg)
 {
 	t_philo	*philo;
-	int		filled;
 
-	filled = 0;
+	pthread_detach(pthread_self());
 	philo = (t_philo *)arg;
 	if (philo->table->time_to_die == 0)
 		return (NULL);
 	while (philo->table->time_start > ft_get_basic_time())
-	{
 		usleep(10);
-	}
 	pthread_mutex_lock(&philo->l_meal_lock);
 	philo->last_meal = ft_get_current_time(philo->table);
 	pthread_mutex_unlock(&philo->l_meal_lock);
@@ -105,11 +94,9 @@ void	*ft_philo_start(void *arg)
 		usleep(50);
 	while (ft_are_we_even_alive(philo->table))
 	{
-		ft_eat_spaguetti(philo, &filled);
+		ft_eat_spaguetti(philo);
 		ft_bed_time(philo);
 		ft_think(philo, 4);
-		if (filled == 1)
-			usleep(100);
 	}
 	return (NULL);
 }

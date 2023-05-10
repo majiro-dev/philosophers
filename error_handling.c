@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 12:58:04 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/08 21:00:24 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/10 11:23:55 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_exit_error(int n, int *test)
 	*test = 0;
 }
 
-int	ft_atoi(char *param,t_table *table)
+int	ft_atoi(char *param, t_table *table)
 {
 	int				c;
 	long long int	nbr;

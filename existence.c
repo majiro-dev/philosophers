@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 15:45:56 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/08 21:36:50 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/10 19:33:33 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,14 @@ int	ft_philo_check(t_philo **academy)
 	{
 		if (ft_ur_no_more(academy[c]))
 			return (1);
-		pthread_mutex_lock(&academy[c]->l_meal_lock);
+		pthread_mutex_lock(&academy[c]->m_count_lock);
 		if (academy[c]->table->must_eat == -1
 			|| academy[c]->meal_count < academy[c]->table->must_eat)
 			satiated = 0;
-		pthread_mutex_unlock(&academy[c]->l_meal_lock);
+		pthread_mutex_unlock(&academy[c]->m_count_lock);
 		c++;
 	}
+	c = 0;
 	if (satiated == 1)
 	{
 		pthread_mutex_lock(&academy[c]->table->cynical_lock);
@@ -98,7 +99,7 @@ void	ft_keep_this_going(t_philo **academy)
 	{
 		if (ft_philo_check(academy))
 		{
-			usleep(1500);
+			usleep(1000);
 			break ;
 		}
 		usleep(1000);

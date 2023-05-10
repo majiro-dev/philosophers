@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:19:42 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/08 21:07:04 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/10 11:19:26 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,9 @@
 # define BLUE "\033[0;36m"
 # define END "\033[0m"
 
-typedef struct s_fork
-{
-	pthread_mutex_t	lock;
-	int				available;
-}	t_fork;
-
 typedef struct s_table
 {
 	pthread_mutex_t	talking_stick;
-	pthread_t		sim;
 	pthread_mutex_t	cynical_lock;
 	int				existence;
 	long long		time_start;
