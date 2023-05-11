@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 12:58:04 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/10 11:23:55 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:17:22 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_exit_error(int n, int *test)
 {
+	if (*test == 0)
+		return ;
 	if (n == 0)
 		printf("Error, non valid argument\n");
 	if (n == 1)

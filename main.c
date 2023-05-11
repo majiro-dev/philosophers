@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:12:40 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/11 12:26:56 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:17:32 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 void	ft_designate_forks(t_philo *philo)
 {
+	if (philo->table->philo_count == 1)
+		return ;
 	if (philo->id % 2 == 0)
 	{
 		philo->fork_1 = philo->id;

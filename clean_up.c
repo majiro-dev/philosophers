@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:52:14 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/11 12:25:58 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:18:04 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	ft_join_philos(t_philo **philo, t_table *table)
 
 void	ft_clean_up(t_philo **academy, t_table *table)
 {
-	printf("the simulation has ended\n");
 	usleep(100000);
 	ft_join_philos(academy, table);
 	ft_free_academy(academy);
