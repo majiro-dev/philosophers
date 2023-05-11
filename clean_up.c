@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:52:14 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/10 21:23:05 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/11 12:25:58 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_clean_table(t_table *table)
 	int	c;
 
 	c = 0;
-	while (c <= table->philo_count)
+	while (c < table->philo_count - 1)
 	{
 		pthread_mutex_destroy(&table->forks[c]);
 		c++;
