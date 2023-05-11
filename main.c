@@ -6,30 +6,25 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:12:40 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/11 17:17:32 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/11 21:17:25 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-// void	ft_leaks(void)
-// {
-// 	system("leaks -q philo");
-// }
+void	ft_leaks(void)
+{
+	system("leaks -q philo");
+}
 
 void	ft_designate_forks(t_philo *philo)
 {
-	if (philo->table->philo_count == 1)
-		return ;
+	philo->fork_1 = philo->id;
+	philo->fork_2 = (philo->id + 1) % philo->table->philo_count;
 	if (philo->id % 2 == 0)
 	{
-		philo->fork_1 = philo->id;
-		philo->fork_2 = (philo->id + 1) % (philo->table->philo_count - 1);
-	}
-	else
-	{
+		philo->fork_1 = (philo->id + 1) % philo->table->philo_count;
 		philo->fork_2 = philo->id;
-		philo->fork_1 = (philo->id + 1) % (philo->table->philo_count - 1);
 	}
 }
 
@@ -37,8 +32,8 @@ void	ft_set_forks(t_table *table)
 {
 	int				c;
 
-	c = 0;
-	while (c < table->philo_count - 1)
+	c = 1;
+	while (c < table->philo_count)
 	{
 		if (pthread_mutex_init(&table->forks[c], NULL) != 0)
 			ft_exit_error(4, &table->existence);
@@ -89,29 +84,32 @@ void	ft_set_table(int argc, char **argv, t_table *table)
 		table->must_eat = -1;
 	if (pthread_mutex_init(&table->talking_stick, NULL))
 		ft_exit_error(3, &table->existence);
-	table->forks = malloc(sizeof(pthread_mutex_t) * (table->philo_count -1));
+	table->forks = malloc(sizeof(pthread_mutex_t) * (table->philo_count));
 	if (!table->forks)
 		ft_exit_error(4, &table->existence);
 	ft_set_forks(table);
 }
 
-//atexit(ft_leaks);
 int	main(int argc, char **argv)
 {
+	atexit(ft_leaks);
 	t_table	table;
 	t_philo	**academy;
 
 	table.existence = 1;
-	if (argc < 5 || argc > 6)
-		ft_exit_error(0, &table.existence);
-	ft_set_table(argc, argv, &table);
-	academy = ft_sit_philosophers(&table);
-	if (ft_are_we_even_alive(&table))
+	if (argc == 5 || argc == 6)
 	{
-		ft_beginning_of_existence(academy, &table);
-		ft_keep_this_going(academy);
+		ft_set_table(argc, argv, &table);
+		academy = ft_sit_philosophers(&table);
+		if (ft_are_we_even_alive(&table))
+		{
+			ft_beginning_of_existence(academy, &table);
+			ft_keep_this_going(academy);
+		}
+		usleep(1000);
+		ft_clean_up(academy, &table);
 	}
-	usleep(1000);
-	ft_clean_up(academy, &table);
+	else
+		ft_exit_error(0, &table.existence);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:10:18 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/11 15:49:04 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/11 22:06:36 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_bed_time(t_philo *philo)
 {
 	long long int	alarm;
 
+	if (philo->table->time_to_sleep == 0)
+		return ;
 	ft_print_status(philo, 3);
 	alarm = ft_get_current_time(philo->table) + philo->table->time_to_sleep;
 	while (ft_get_current_time(philo->table) < alarm)
@@ -37,6 +39,8 @@ void	ft_think(t_philo *philo, int status)
 	pthread_mutex_unlock(&philo->l_meal_lock);
 	if (the_munchies < 0)
 		the_munchies = 0;
+	if (the_munchies == 0 && status == -1)
+		the_munchies = 1;
 	if (the_munchies > 600)
 		the_munchies = 200;
 	if (the_munchies != 0)
@@ -81,17 +85,16 @@ void	*ft_philo_start(void *arg)
 {
 	t_philo	*philo;
 
-	pthread_detach(pthread_self());
 	philo = (t_philo *)arg;
 	if (philo->table->time_to_die == 0)
 		return (NULL);
 	while (philo->table->time_start > ft_get_basic_time())
-		usleep(10);
+		usleep(100);
 	pthread_mutex_lock(&philo->l_meal_lock);
 	philo->last_meal = ft_get_current_time(philo->table);
 	pthread_mutex_unlock(&philo->l_meal_lock);
 	if (philo->id % 2)
-		usleep(philo->table->time_to_eat / 2);
+		ft_think(philo, -1);
 	while (ft_are_we_even_alive(philo->table))
 	{
 		ft_eat_spaguetti(philo);
