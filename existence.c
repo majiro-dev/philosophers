@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 15:45:56 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/11 21:44:12 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/12 16:27:34 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void	ft_keep_this_going(t_philo **academy)
 {
 	while (1)
 	{
-		//printf("TEST\n");
 		if (ft_philo_check(academy))
 		{
 			usleep(1000);

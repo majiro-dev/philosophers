@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:10:18 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/11 22:06:36 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/12 16:35:33 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	ft_think(t_philo *philo, int status)
 	long long int	the_munchies;
 
 	pthread_mutex_lock(&philo->l_meal_lock);
-	the_munchies = philo->table->time_to_die
-		- (ft_get_current_time(philo->table) - philo->last_meal)
-		- philo->table->time_to_eat / 2;
+	the_munchies = (philo->table->time_to_die
+			- (ft_get_current_time(philo->table) - philo->last_meal)
+			- philo->table->time_to_eat) / 2;
 	pthread_mutex_unlock(&philo->l_meal_lock);
 	if (the_munchies < 0)
 		the_munchies = 0;
@@ -43,6 +43,9 @@ void	ft_think(t_philo *philo, int status)
 		the_munchies = 1;
 	if (the_munchies > 600)
 		the_munchies = 200;
+	if (philo->table->time_to_sleep == 0
+		&& (philo->table->time_to_die / 2) > philo->table->time_to_eat)
+		the_munchies = 10;
 	if (the_munchies != 0)
 		ft_print_status(philo, status);
 	while (ft_get_current_time(philo->table) < the_munchies)
