@@ -6,13 +6,14 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:52:14 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/12 19:40:19 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/12 21:47:48 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-//frees the academy and destroys
+//frees the academy and destroys las meal mutex and meal count mutex for each
+//philosopher
 void	ft_free_academy(t_philo **academy)
 {
 	int	c;
@@ -28,6 +29,7 @@ void	ft_free_academy(t_philo **academy)
 	free(academy);
 }
 
+//destroys forks' mutexes, existece mutex and talking mutex
 void	ft_clean_table(t_table *table)
 {
 	int	c;
@@ -43,6 +45,7 @@ void	ft_clean_table(t_table *table)
 	free(table->forks);
 }
 
+//joins all philo threads with main thread
 void	ft_join_philos(t_philo **philo, t_table *table)
 {
 	int	c;
@@ -55,6 +58,7 @@ void	ft_join_philos(t_philo **philo, t_table *table)
 	}
 }
 
+//joins threads, frees memory and destroys mutexes
 void	ft_clean_up(t_philo **academy, t_table *table)
 {
 	usleep(100000);

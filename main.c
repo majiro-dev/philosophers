@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:12:40 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/12 17:55:42 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/12 21:41:31 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,25 @@
 // 	system("leaks -q philo");
 // }
 
+//assigns the forks to the philosophers, if the philosopher's id is even,
+//it will take the right fork first, otherwise it will take the left fork first
+//to ensure that the las philosopher takes the last and first fork
+//we use the modulo operator to calculate the fork's id
 void	ft_designate_forks(t_philo *philo)
 {
-	philo->fork_1 = philo->id;
-	philo->fork_2 = (philo->id + 1) % philo->table->philo_count;
 	if (philo->id % 2 == 0)
 	{
 		philo->fork_1 = (philo->id + 1) % philo->table->philo_count;
 		philo->fork_2 = philo->id;
 	}
+	else
+	{
+	philo->fork_1 = philo->id;
+	philo->fork_2 = (philo->id + 1) % philo->table->philo_count;
+	}
 }
 
+//initializes the forks' mutexes, if it fails, it exits with an error
 void	ft_set_forks(t_table *table)
 {
 	int				c;
@@ -41,6 +49,9 @@ void	ft_set_forks(t_table *table)
 	}
 }
 
+//initializes the philosophers, allocates memory for them and sets their id,
+//meal count and last meal time, then it calls ft_designate_forks to assign
+//the forks to the philosophers
 t_philo	**ft_sit_philosophers(t_table *table)
 {
 	int		c;
@@ -70,6 +81,8 @@ t_philo	**ft_sit_philosophers(t_table *table)
 	return (academy);
 }
 
+//initializes the table, setting all the time values and the number of meals, 
+//allocates memory for the forks and sets them
 void	ft_set_table(int argc, char **argv, t_table *table)
 {
 	table->philo_count = ft_atoi(argv[1], table);

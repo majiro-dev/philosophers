@@ -6,12 +6,14 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:10:18 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/12 19:36:21 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/12 21:56:20 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+//prints the status of the philosopher and waits for the time_to_sleep to pass
+//while checking if the simulation is still active
 void	ft_bed_time(t_philo *philo)
 {
 	long long int	alarm;
@@ -28,6 +30,9 @@ void	ft_bed_time(t_philo *philo)
 	}
 }
 
+//calculates the time to think based on the time_to_die, time_to_eat and 
+//the last meal time, prints the status and waits for the time to think to pass
+//while checking if the simulation is still active
 void	ft_think(t_philo *philo, int status)
 {
 	long long int	the_munchies;
@@ -56,6 +61,10 @@ void	ft_think(t_philo *philo, int status)
 	}
 }
 
+//make the philo take 2 forks and eat, sets the new last meal time,
+//increments the meal count, prints the status,
+//waits for the time_to_eat to pass while checking if the si,ulation active
+//then releases the forks
 void	ft_eat_spaguetti(t_philo *philo)
 {
 	long long int	stop_munch;

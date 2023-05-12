@@ -6,12 +6,13 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 15:45:56 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/12 17:31:12 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/12 20:59:32 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+//checks if the simulation should continue, if not, it returns 0
 int	ft_are_we_even_alive(t_table *table)
 {
 	pthread_mutex_lock(&table->cynical_lock);
@@ -25,6 +26,8 @@ int	ft_are_we_even_alive(t_table *table)
 	pthread_mutex_unlock(&table->cynical_lock);
 }
 
+//creates a thread for each philo, if there is only one philo, it calls
+// the single philo function
 void	ft_beginning_of_existence(t_philo **philo, t_table *table)
 {
 	int	c;
@@ -48,6 +51,7 @@ void	ft_beginning_of_existence(t_philo **philo, t_table *table)
 	}
 }
 
+//checks if a philo has died
 int	ft_ur_no_more(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->l_meal_lock);
@@ -65,6 +69,7 @@ int	ft_ur_no_more(t_philo *philo)
 	return (0);
 }
 
+//checks if all philos have eaten enough
 int	ft_philo_check(t_philo **academy)
 {
 	int	c;
@@ -93,6 +98,7 @@ int	ft_philo_check(t_philo **academy)
 	return (satiated);
 }
 
+//it checks if the simulation should continue, if not, it breaks the loop
 void	ft_keep_this_going(t_philo **academy)
 {
 	while (1)

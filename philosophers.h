@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:19:42 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/11 21:11:44 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/12 20:31:48 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_philo
 long long	ft_get_basic_time(void);
 long long	ft_get_current_time(t_table *table);
 //error_handling
-void		ft_exit_error(int n, int *test);
+void		ft_exit_error(int n, int *existence);
 int			ft_atoi(char *param, t_table *table);
 //clean_up
 void		ft_free_academy(t_philo **academy);

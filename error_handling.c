@@ -6,15 +6,16 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 12:58:04 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/11 17:17:22 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/12 20:58:28 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	ft_exit_error(int n, int *test)
+//prints an error message and sets the existence flag to 0
+void	ft_exit_error(int n, int *existence)
 {
-	if (*test == 0)
+	if (*existence == 0)
 		return ;
 	if (n == 0)
 		printf("Error, non valid argument\n");
@@ -28,9 +29,11 @@ void	ft_exit_error(int n, int *test)
 		printf("Error, bad fork placement\n");
 	if (n == 5)
 		printf("Error, bad philo thread\n");
-	*test = 0;
+	*existence = 0;
 }
 
+//returns the param as an int, if it is not or if it is too big, it sets
+// the existence flag to 0
 int	ft_atoi(char *param, t_table *table)
 {
 	int				c;

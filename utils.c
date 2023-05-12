@@ -6,13 +6,13 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 23:07:52 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/12 18:23:24 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/12 21:48:23 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-//this function prints the current status of the philosopher
+//prints the current status of the philosopher
 void	ft_print_status(t_philo *philo, int s)
 {
 	pthread_mutex_lock(&philo->table->talking_stick);
