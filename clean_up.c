@@ -6,12 +6,13 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:52:14 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/11 17:18:04 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/12 19:40:19 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+//frees the academy and destroys
 void	ft_free_academy(t_philo **academy)
 {
 	int	c;
