@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:10:18 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/12 16:35:33 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/12 19:36:21 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_think(t_philo *philo, int status)
 		the_munchies = 0;
 	if (the_munchies == 0 && status == -1)
 		the_munchies = 1;
-	if (the_munchies > 600)
+	if (the_munchies > 700)
 		the_munchies = 200;
 	if (philo->table->time_to_sleep == 0
 		&& (philo->table->time_to_die / 2) > philo->table->time_to_eat)
@@ -66,9 +66,9 @@ void	ft_eat_spaguetti(t_philo *philo)
 	ft_print_status(philo, 1);
 	pthread_mutex_lock(&philo->table->forks[philo->fork_2]);
 	ft_print_status(philo, 1);
-	ft_print_status(philo, 2);
 	pthread_mutex_lock(&philo->l_meal_lock);
 	philo->last_meal = ft_get_current_time(philo->table);
+	ft_print_status(philo, 2);
 	pthread_mutex_unlock(&philo->l_meal_lock);
 	stop_munch = ft_get_current_time(philo->table) + philo->table->time_to_eat;
 	while (ft_get_current_time(philo->table) < stop_munch)
@@ -84,6 +84,7 @@ void	ft_eat_spaguetti(t_philo *philo)
 	pthread_mutex_unlock(&philo->table->forks[philo->fork_2]);
 }
 
+//this function is the starting point for each philo thread when philo_count > 1
 void	*ft_philo_start(void *arg)
 {
 	t_philo	*philo;

@@ -6,16 +6,16 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:12:40 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/12 15:52:03 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/12 17:55:42 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	ft_leaks(void)
-{
-	system("leaks -q philo");
-}
+// void	ft_leaks(void)
+// {
+// 	system("leaks -q philo");
+// }
 
 void	ft_designate_forks(t_philo *philo)
 {
@@ -90,9 +90,9 @@ void	ft_set_table(int argc, char **argv, t_table *table)
 	ft_set_forks(table);
 }
 
+//atexit(ft_leaks);
 int	main(int argc, char **argv)
 {
-	atexit(ft_leaks);
 	t_table	table;
 	t_philo	**academy;
 
