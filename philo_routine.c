@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:10:18 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/12 21:56:20 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/15 11:14:12 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,10 @@ void	ft_eat_spaguetti(t_philo *philo)
 }
 
 //this function is the starting point for each philo thread when philo_count > 1
+//it waits until a small delay has passed to make sure all threads are created
+//then it locks the last_meal mutex to set the last meal time
+//if the philo is odd it makes it think for a bit to avoid deadlocks
+//then it enters the main loop of the philo
 void	*ft_philo_start(void *arg)
 {
 	t_philo	*philo;

@@ -6,7 +6,7 @@
 /*   By: manujime <manujime@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:12:40 by manujime          #+#    #+#             */
-/*   Updated: 2023/05/12 21:41:31 by manujime         ###   ########.fr       */
+/*   Updated: 2023/05/15 11:09:18 by manujime         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@
 
 //assigns the forks to the philosophers, if the philosopher's id is even,
 //it will take the right fork first, otherwise it will take the left fork first
-//to ensure that the las philosopher takes the last and first fork
+//to ensure that the last philosopher takes the last and first fork
 //we use the modulo operator to calculate the fork's id
 void	ft_designate_forks(t_philo *philo)
 {
 	if (philo->id % 2 == 0)
 	{
-		philo->fork_1 = (philo->id + 1) % philo->table->philo_count;
-		philo->fork_2 = philo->id;
+		philo->fork_1 = (philo->id) % philo->table->philo_count;
+		philo->fork_2 = philo->id - 1;
 	}
 	else
 	{
-	philo->fork_1 = philo->id;
-	philo->fork_2 = (philo->id + 1) % philo->table->philo_count;
+	philo->fork_1 = philo->id - 1;
+	philo->fork_2 = (philo->id) % philo->table->philo_count;
 	}
 }
 
