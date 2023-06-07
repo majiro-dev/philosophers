@@ -1,6 +1,7 @@
 # Philosophers
 
 This project is a simulation of the famous dining philosophers problem developed as part of the curriculum at the **42** programming school.
+
 It aims to demonstrate synchronization issues that can arise in concurrent programming. The goal is to create a program that models a group of philosophers sitting at a round table and taking turns to eat, think, or sleep. The simulation stops when a philosopher dies of starvation, or all philosophers have eaten enogh.
 
 The following rules govern the behavior of the philosophers:
