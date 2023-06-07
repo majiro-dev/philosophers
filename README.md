@@ -19,9 +19,8 @@ Optionally, you can provide `number_of_times_each_philosopher_must_eat`, which s
 
 ## Global Rules
 
-To ensure proper implementation, the project must adhere to the following rules:
 - Global variables are not allowed.
-- The program should take the required arguments mentioned in the overview.
+- The program should take the required arguments mentioned above.
 - Displayed state changes of a philosopher must follow a specific format, including the timestamp and the philosopher's number.
 - Messages announcing a philosopher's death should be displayed no more than 10 ms after the actual death.
 - Each philosopher should be represented by a separate thread.
